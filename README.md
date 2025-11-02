@@ -1,6 +1,6 @@
 # AI Glow
 
-A Flutter package that brings the latest AI-driven glow effects to your widgets, inspired by Apple Intelligence and Google’s Gemini AI. 
+A Flutter package that brings the latest AI-driven glow effects to your widgets, inspired by Apple Intelligence and Google’s Gemini AI.
 
 <img width="2509" alt="ss" src="https://github.com/user-attachments/assets/6d4d17bd-93e3-42bb-9849-4c1427191392" />
 
@@ -36,9 +36,8 @@ InnerAiGlowing(
   width: 200,
   borderRadius: 15,
   glowWidth: 3,
-  blure: 8,
+  blur: 8,
   colors: [Colors.blue, Colors.purple, Colors.pink],
-  aiMode: AiMode.adaptive, // enables on-device AI adjustments
 )
 ```
 
@@ -51,9 +50,8 @@ OuterAiGlow(
   width: 200,
   borderRadius: 15,
   glowWidth: 3,
-  blure: 8,
+  blur: 8,
   colors: [Colors.cyan, Colors.indigo, Colors.teal],
-  aiMode: AiMode.contextual, // uses Apple Intelligence for glow tuning
 )
 ```
 

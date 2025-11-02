@@ -1,6 +1,6 @@
 name: ai_glow
 description: "ai_glow — Flutter widgets that add animated, customizable inner and outer glow effects (InnerAiGlowing, OuterAiGlow). Lightweight and easy to style: colors, blur, glowWidth, borderRadius, and size."
-version: 0.0.2
+version: 0.0.3
 homepage: https://github.com/ahmeddouss/ai_glow.git
 
 environment:
