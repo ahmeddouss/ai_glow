@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'package:ai_glow/src/ai_glow_colors.dart';
 import 'package:flutter/material.dart';
 
 /// A widget that paints an animated, colorful glow around its [child].
@@ -65,7 +66,7 @@ class OuterAiGlow extends StatefulWidget {
     this.borderRadius = 10,
     this.glowWidth = 2,
     this.blur = 5,
-    this.colors = const [Colors.blue, Colors.purple, Colors.pink],
+    this.colors = AiGlowColors.initial,
   });
 
   @override

@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'package:ai_glow/src/ai_glow_colors.dart';
 import 'package:flutter/material.dart';
 
 /// A widget that paints an animated, colorful glow inside its [child].
@@ -22,16 +23,6 @@ class InnerAiGlowing extends StatefulWidget {
   /// The widget that will be displayed and receive the inner glow overlay.
   final Widget child;
 
-  /// The height of the square that contains the child and the glow.
-  ///
-  /// Defaults to `100`.
-  final double height;
-
-  /// The width of the square that contains the child and the glow.
-  ///
-  /// Defaults to `100`.
-  final double width;
-
   /// The corner radius applied when clipping the child and drawing the glow.
   ///
   /// Defaults to `10`.
@@ -51,6 +42,9 @@ class InnerAiGlowing extends StatefulWidget {
   /// Defaults to `[Colors.blue, Colors.purple, Colors.pink]`.
   final List<Color> colors;
 
+  /// If the glow is visible to the user.
+  final bool enabled;
+
   /// Creates an [InnerAiGlowing].
   ///
   /// The [child] is required. Other parameters are optional and have
@@ -58,12 +52,11 @@ class InnerAiGlowing extends StatefulWidget {
   const InnerAiGlowing({
     super.key,
     required this.child,
-    this.height = 100,
-    this.width = 100,
     this.borderRadius = 10,
     this.glowWidth = 2,
     this.blur = 5,
-    this.colors = const [Colors.blue, Colors.purple, Colors.pink],
+    this.colors = AiGlowColors.initial,
+    this.enabled = true,
   });
 
   @override
@@ -87,32 +80,21 @@ class _InnerAiGlowingState extends State<InnerAiGlowing> with SingleTickerProvid
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: widget.width,
-      height: widget.height,
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(widget.borderRadius),
-        child: Stack(
-          alignment: Alignment.center,
-          children: [
-            widget.child,
-            IgnorePointer(
-              child: AnimatedBuilder(
-                animation: _controller,
-                builder:
-                    (_, __) => CustomPaint(
-                      painter: _GlowPainter(
-                        animationValue: _controller.value,
-                        colors: widget.colors,
-                        borderRadius: widget.borderRadius,
-                        glowWidth: widget.glowWidth,
-                        blur: widget.blur,
-                      ),
-                      child: const SizedBox.expand(),
-                    ),
-              ),
-            ),
-          ],
+    if (!widget.enabled) return widget.child;
+
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(widget.borderRadius),
+      child: AnimatedBuilder(
+        animation: _controller,
+        builder: (_, _) => CustomPaint(
+          foregroundPainter: _GlowPainter(
+            animationValue: _controller.value,
+            colors: widget.colors,
+            borderRadius: widget.borderRadius,
+            glowWidth: widget.glowWidth,
+            blur: widget.blur,
+          ),
+          child: widget.child,
         ),
       ),
     );
